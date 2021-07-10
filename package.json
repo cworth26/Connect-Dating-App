@@ -23,11 +23,7 @@
     "cloudinary": "^1.26.1",
     "connect-mongo": "^3.2.0",
     "dotenv": "^10.0.0",
-<<<<<<< HEAD
     "emailjs-com": "^3.2.0",
-=======
-    "emailjs-com": "^3.1.0",
->>>>>>> 6b90ae8 (Updating files)
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "font-awesome": "^4.7.0",
