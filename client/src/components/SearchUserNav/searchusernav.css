@@ -1,0 +1,8 @@
+.nav {
+    display: flex;
+    justify-content: center;
+}
+
+.list-item {
+    margin: .25rem;
+}
