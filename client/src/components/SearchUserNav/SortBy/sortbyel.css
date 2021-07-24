@@ -1,0 +1,13 @@
+@media screen and (max-width: 575px) {
+    #form-div {
+        display: block;
+    }
+    #sort-by-text {
+    float: left;
+  }
+  .sort-by-input {
+    display: block;
+    overflow: hidden;
+    padding: 0px 4px 0px 6px;
+  }
+}

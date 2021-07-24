@@ -60,12 +60,14 @@ const DTSettings = () => {
       <div className="text-center mt-4 px-5" style={{ overflowX: "hidden" }}>
         {/* <h1 style={{ marginTop: "1rem" }}>Edit Profile</h1> */}
         <Row className="py-5 px-3">
+        <Col md={6} className="d-flex justify-content-center align-items-center">
          <ImageCard 
          username={userData.username}
          public_id={userData.public_id}
          setReRender={setReRender}
          />
-          <Col id="text-column" md={7}>
+         </Col>
+          <Col id="text-column" md={6}>
             <DTDiv>
               <Row style={{ marginBottom: "1rem" }}>
                 <IntroCard

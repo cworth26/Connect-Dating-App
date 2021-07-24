@@ -1,4 +1,13 @@
-body{margin-top:20px;
+#search-user-nav {
+    margin-top: 1rem;
+}
+
+#pagination-el {
+    margin-bottom: 2rem;
+}
+
+body
+{margin-top:20px;
     background:#F5F5F5;
     }
     /* match List */

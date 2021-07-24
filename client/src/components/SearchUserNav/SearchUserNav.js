@@ -39,12 +39,12 @@ const SearchUserNav = () => {
 
   return <div className="nav navbar">
       <ul className="nav">
-          <li className="list-item">
+          <li className="list-item" id="sort-by-el">
               <SortByEl />
           </li>
             {categories.map((category) =>
             <li className="list-item">
-              <Button className="btn btn-primary py-1 px-2 my-1 mx-3"
+              <Button className="btn btn-primary py-1 px-2"
               onClick={handleShowModal}>{category}</Button>
           </li>
           )}

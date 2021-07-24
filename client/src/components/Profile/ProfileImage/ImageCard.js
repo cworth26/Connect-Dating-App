@@ -10,7 +10,7 @@ const ProfileImage = ({username, profileImg}) => {
                 <img
                   className="img-fluid rounded-circle"
                   src={profileImg}
-                  style={{ maxWidth: "315px", height: "315px" }}
+                  style={{ maxWidth: "400px", height: "400px" }}
                 />
               </div>
             </DTDiv>
