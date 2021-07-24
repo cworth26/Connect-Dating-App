@@ -22,6 +22,10 @@ export default {
       return axios.get("/api/match/all/modified");
     },
 
+    addMessages: function (matchId, msgObj) {
+      return axios.put('/api/match/msg/' + matchId, msgObj);
+    }
+
   }
 
   

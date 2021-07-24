@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { LOADING, LOGIN, LOGOUT, SET_USER, UNSET_USER, SET_MESSAGES } from './actions';
+import { LOADING, LOGIN, LOGOUT, UPDATE_MESSAGES,SET_USER, UNSET_USER, SET_MESSAGES } from './actions';
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
@@ -34,11 +34,28 @@ const reducer = (state, action) => {
       }
 
     case SET_MESSAGES:
-      console.log("state", state.currentMessages)
-      console.log(action.message)
+
       return {
         ...state,
-        currentMessages: [...state.currentMessages, action.message]
+        chatRoomData: action.chatData
+      }
+
+
+
+    case UPDATE_MESSAGES:
+
+      const newChatRoomData = state.chatRoomData.map(obj => {
+        console.log("UPDATE_MESSAGES", obj.socketRoomName === action.message.socketRoomName)
+        if(obj.socketRoomName === action.message.socketRoomName) {
+          obj.messages.push(action.message);
+        }
+        return obj;
+      });
+  
+
+      return {
+        ...state,
+        chatRoomData: newChatRoomData
       }
 
     default:
@@ -50,7 +67,7 @@ const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     user: null,
     loading: false,
-    currentMessages: []
+    chatRoomData: null
   });
 
   return <Provider value={[state, dispatch]} {...props} />;
