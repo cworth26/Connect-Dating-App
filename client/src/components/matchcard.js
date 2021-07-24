@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Image } from "cloudinary-react";
 import { Link } from 'react-router-dom';
+import "./matchcard.css"
 
 const Matchcard = props => {
 
     return (
-        <div class="col-sm-6 col-lg-4">
-              <div class="match-list match-grid">
+        <div class="col-sm- col-lg-4" id="match-card-container">
+              <div class="match-list match-grid" id="card">
                 <div class="match-list-image">
                 <Image
                   publicId={props.publicId}

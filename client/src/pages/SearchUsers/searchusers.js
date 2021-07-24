@@ -42,8 +42,8 @@ const SearchUsers = () => {
 
   return (
     <Container>
-      <Row className="d-flex justify-content-center">
-        <SearchUserNav />
+      <Row className="d-flex justify-content-center" id="search-user-nav">
+        <SearchUserNav/>
       </Row>
       <Row>
         {matches &&
@@ -60,7 +60,7 @@ const SearchUsers = () => {
             />
           ))}
       </Row>
-      <Row>
+      <Row id="pagination-el">
         <Pagination />
       </Row>
     </Container>

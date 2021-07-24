@@ -1,0 +1,23 @@
+#match-card-container {
+  margin-top: 2rem;
+}
+
+#card {
+  margin: 0.5rem;
+  box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 10px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+#card:hover {
+    box-shadow: 0px 12px 5px 0px rgba(0, 17, 255, 0.25);
+    -webkit-box-shadow: 0px 12px 5px 0px rgba(0, 17, 255, 0.25);
+    -moz-box-shadow: 0px 12px 5px 0px rgba(0, 17, 255, 0.25);
+    transform: translateY(-.5rem);
+}
+
+@media screen and (max-width: 575px) {
+  #match-card-container {
+    margin: 1rem;
+  }
+}

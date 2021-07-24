@@ -2,7 +2,6 @@ import React from 'react'
 
 const Pagination = () => {
     return (
-<>
         <div class="col-12 text-center mt-4 mt-sm-5">
           <ul class="pagination justify-content-center mb-0">
             <li class="page-item disabled">
@@ -41,7 +40,6 @@ const Pagination = () => {
             </li>
           </ul>
         </div>
-</>
     )
 }
 
