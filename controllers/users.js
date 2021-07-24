@@ -2,6 +2,8 @@ const db = require("../database/models");
 const axios = require("axios");
 const { response } = require("express");
 const User = require("../database/models/user");
+const createConfirmation = require("./confirmationCode");
+const mailer = require("../config/nodemailer.config");
 
 // Defining methods for the usersController
 module.exports = {
@@ -17,9 +19,9 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   findByUsername: function (req, res) {
-    db.User.findOne({ "username" : req.params.username })
-      .then((dbModel => res.json(dbModel)))
-      .catch((err) => res.status(422).json(err))
+    db.User.findOne({ username: req.params.username })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
   },
   create: function (req, res) {
     db.User.create(req.body)
@@ -47,10 +49,10 @@ module.exports = {
       });
   },
   createUser: function (req, res) {
-    const { 
+    const {
       username,
-      email, 
-      password, 
+      email,
+      password,
       firstName,
       lastName,
       age,
@@ -63,40 +65,55 @@ module.exports = {
       interests,
     } = req.body;
 
-  User.findOne({ username: username }, (err, user) => {
-    if (err) {
-      console.log("User Create Error: ", err);
-      return;
-    }
+    User.findOne({ username: username }, (err, user) => {
+      if (err) {
+        console.log("User Create Error: ", err);
+        return;
+      }
 
-    if (user) {
-      res.json({
-        error: `There is already a user with the username: ${username}`,
+      if (user) {
+        res.json({
+          error: `There is already a user with the username: ${username}`,
+        });
+        return;
+      }
+
+      const newUser = new User({
+        username: username,
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        location: location,
+        gender: gender,
+        pronouns: pronouns,
+        sexuality: sexuality,
+        status: status,
+        bio: bio,
+        interests: interests,
       });
-      return;
-    }
 
-    const newUser = new User({
-      username: username,
-      email: email,
-      password: password,
-      firstName: firstName,
-      lastName: lastName,
-      age: age,
-      location: location,
-      gender: gender,
-      pronouns: pronouns,
-      sexuality: sexuality,
-      status: status,
-      bio: bio,
-      interests: interests,
+      const confirmationCode = createConfirmation();
+
+      try {
+        mailer.sendConfirmationEmail(
+          newUser.username,
+          newUser.email,
+          confirmationCode
+        );
+      } catch (err) {
+        console.log("controllers mailer error");
+        console.error(err);
+      }
+
+      //send confirmation email after a new user's creation
+
+      newUser.save((err, savedUser) => {
+        if (err) return res.json(err);
+
+        res.json(savedUser);
+      });
     });
-
-    newUser.save((err, savedUser) => {
-      if (err) return res.json(err);
-
-      res.json(savedUser);
-    });
-  });
   },
 };

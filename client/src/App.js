@@ -20,32 +20,47 @@ import { useStoreContext } from "./store/store";
 // import clientSocket from "socket.io-client";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faHeart, faEdit, faMapMarker, faSave, faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEnvelope,
+  faHeart,
+  faEdit,
+  faMapMarker,
+  faSave,
+  faWindowClose,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(fab, faEnvelope, faHeart, faEdit, faMapMarker, faSave, faWindowClose);
+library.add(
+  fab,
+  faEnvelope,
+  faHeart,
+  faEdit,
+  faMapMarker,
+  faSave,
+  faWindowClose
+);
 //Use throughout app where icons are needed: import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' with <FontAwesomeIcon icon="{iconName}" />
 
 const App = () => {
   const history = useHistory();
   const [state, dispatch] = useStoreContext();
-  
+
   const [isLoggedInLoading, setIsLoggedInLoading] = useState(true);
-  
+
   useEffect(() => {
     dispatch({ type: LOADING });
     console.log("useEffect in app");
     axios
-    .get("/api/users")
-    .then((response) => {
-      console.log(response);
-      if (response.data.user) {
-        dispatch({ type: SET_USER, user: response.data.user });
+      .get("/api/users")
+      .then((response) => {
+        console.log(response);
+        if (response.data.user) {
+          dispatch({ type: SET_USER, user: response.data.user });
         } else {
           dispatch({ type: UNSET_USER });
           history.push("/");
         }
         setIsLoggedInLoading(false);
-    })
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -71,6 +86,7 @@ const App = () => {
           <Route exact path="/chat" component={Chats} />
           <Route exact path="/help" component={Help} />
           <Route component={Home} />
+          <Route path="/confirm/:confirmationCode" component={Signup} />
         </Switch>
       ) : (
         <Switch>
