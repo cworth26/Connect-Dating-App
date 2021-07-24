@@ -54,6 +54,22 @@ router.get("/all/modified", async (req, res) => {
   }
 });
 
+router.put('/msg/:matchId', async (req, res) => {
+  const updatedMatchData = await Match.updateOne(
+    {
+      _id: req.params.matchId,
+    },
+    {
+      $push: {
+        messages: req.body,
+      },
+    }
+  );
+  
+  return res.json(updatedMatchData);
+
+})
+
 router.post("/", async (req, res) => {
   try {
 
