@@ -60,9 +60,10 @@ const DTProfile = () => {
       <div className="text-center mt-4 px-5" style={{ overflowX: "hidden" }}>
         {/* <h1 style={{ marginTop: "1rem" }}>Edit Profile</h1> */}
         <Row className="py-5 px-3">
-         <ProfileImage 
-         profileImg={userData.profileImg}/>
-          <Col className="border-left" md={7}>
+          <Col md={6} className="d-flex justify-content-center align-items-center">
+          <ProfileImage profileImg={userData.profileImg}/>
+          </Col>
+          <Col md={6}>
             <DTDiv>
               <Row style={{ marginBottom: "1rem" }}>
                 <ProfileIntro

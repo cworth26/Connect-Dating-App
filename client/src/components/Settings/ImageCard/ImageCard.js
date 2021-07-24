@@ -19,8 +19,8 @@ const ImageCard = ({ username, public_id, reRender, setReRender }) => {
         <div style={{ maxWidth: `80rem` }} id="img-col-div">
             <Image
               publicId={public_id}
-              width="315"
-              height="315"
+              width="400"
+              height="400"
               crop="scale"
               cloudName="dyvqfdd5w"
               style={{
