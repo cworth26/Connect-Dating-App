@@ -56,8 +56,12 @@ const App = () => {
     return <div></div>;
   }
 
+  const divStyle = {
+    minHeight: "100vh"
+  }
+
   return (
-    <div>
+    <div style={divStyle}>
       <Navbar />
 
       {state.user ? (

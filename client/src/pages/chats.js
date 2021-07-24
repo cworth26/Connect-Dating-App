@@ -11,8 +11,9 @@ import { Container, Row, Col, ListGroup, Form, Button } from "react-bootstrap";
 const Chats = () => {
   const [state, dispatch] = useStoreContext();
   const socket = useRef();
+  const chatDiv = useRef();
   const [currentRoom, setCurrentRoom] = useState(null);
-  const [talkingTo, setTalkingTo] = useState("");
+  const [talkingTo, setTalkingTo] = useState("---");
   const [msg, setMsg] = useState("");
   const [haveData, setHaveData] = useState(false);
 
@@ -44,6 +45,11 @@ const Chats = () => {
   
       });
     });
+
+    return () => {
+      console.log("socket disconnect");
+      socket.current.disconnect();
+    }
 
   }, []);
 
@@ -110,23 +116,58 @@ const Chats = () => {
 
     const filteredForCurrent = state.chatRoomData.filter(val => val.socketRoomName === currentRoom.socketRoomName)[0]
 
+    const senderStyles = "text-right font-weight-bold";
+    const receiverStyles = "font-weight-bold";
 
-    return filteredForCurrent.messages.reverse().map((msgObj, i) => {
-                return (
-                  <ListGroup.Item
-                    className={i % 2 === 0 ? "text-primary" : "text-warning"}
-                  >
-                    {msgObj.msg}
-                  </ListGroup.Item>
-                );
-              })
+
+    const messageArr = filteredForCurrent.messages.map((msgObj, i) => {
+      return (
+        <ListGroup.Item
+          key={i}
+          variant={msgObj.userId === state.user._id ? "primary" : "warning"}
+          className={msgObj.userId === state.user._id ? senderStyles : receiverStyles}
+        >
+          {msgObj.msg}
+        </ListGroup.Item>
+      );
+    })
+
+    setTimeout(() => {
+      chatDiv.current.scrollTop = 9999999;
+    }, 10)
+
+    return messageArr;
+
+  }
+
+  const styles = {
+    containerStyle: {
+      minHeight: "100%"
+    },
+
+    mainCol: {
+      height: "32rem",
+      overflow: "auto"
+    },
+
+    stickyItem: {
+      position: "-webkit-sticky",
+      position: "sticky",
+      top: "0px"
+    }
+
   }
 
 
   return (
-    <Container>
-      <Row>
-        <Col lg="4">
+    <Container style={styles.containerStyle}>
+      <Row className="mt-4">
+        <Col
+          lg={{
+            span: 3
+          }}
+          style={styles.mainCol}
+        >
           <ListGroup className="pr-5">
             {state.chatRoomData &&
               state.chatRoomData.map((obj, index) => {
@@ -137,6 +178,7 @@ const Chats = () => {
                 }
                 return (
                   <ListGroup.Item
+                    key={index}
                     action
                     onClick={(e) => handleOnClickRoom(e, obj, displayName)}
                   >
@@ -146,25 +188,38 @@ const Chats = () => {
               })}
           </ListGroup>
         </Col>
-        <Col lg="8">
+        <Col lg={{
+          span: 7,
+          offset: 1
+        }}>
           <Row>
-            <ListGroup>
-              <ListGroup.Item active>{talkingTo}</ListGroup.Item>
+            <Col ref={chatDiv} style={styles.mainCol}>
+              <ListGroup>
+                <ListGroup.Item  
+                  className="font-weight-bold" 
+                  active
+                  style={styles.stickyItem}
+                >
+                  {talkingTo}
+                </ListGroup.Item>
                 {displayMessages()}
-            </ListGroup>
+              </ListGroup>
+            </Col>
           </Row>
-          <Row>
-            <Form onSubmit={(e) => handleMsgSubmit(e)}>
-              <Form.Group>
-                <Form.Control
-                  type="text"
-                  placeholder="Send a Message Here"
-                  onChange={(e) => setMsg(e.target.value)}
-                  value={msg}
-                />
-              </Form.Group>
-              <Button type="submit">Send</Button>
-            </Form>
+          <Row className="mt-4">
+            <Col>
+              <Form onSubmit={(e) => handleMsgSubmit(e)}>
+                <Form.Group>
+                  <Form.Control
+                    type="text"
+                    placeholder="Send a Message Here"
+                    onChange={(e) => setMsg(e.target.value)}
+                    value={msg}
+                  />
+                </Form.Group>
+                <Button variant="danger" className="px-4 py-2 font-weight-bold" type="submit">Send</Button>
+              </Form>
+            </Col>
           </Row>
         </Col>
       </Row>
