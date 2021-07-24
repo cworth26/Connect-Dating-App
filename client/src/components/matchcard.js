@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Matchcard = props => {
 
     return (
-        <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="col-sm-6 col-lg-4">
               <div class="match-list match-grid">
                 <div class="match-list-image">
                 <Image
@@ -36,8 +36,8 @@ const Matchcard = props => {
                     </div>
                   </div>
                   <div class="match-list-favourite-time">
-                    <a class="match-list-favourite order-2" href="#">
-                      <FontAwesomeIcon icon="heart" />
+                    <a class="match-list-favourite order-2" href="#" style={{position: 'relative', top: '10px'}}>
+                      <FontAwesomeIcon icon="heart"/>
                     </a>
                     <span class="match-list-time order-1">
                       <i class="far fa-clock pr-1"></i>{props.lastonline}
@@ -47,7 +47,7 @@ const Matchcard = props => {
                         aria-label="Basic example"
                       >
                           <a href ={`/chat/${props.account}`}>
-                        <button type="button" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary py-1 px-2" style={{position: 'relative', top: '-10px'}}>
                           Let's Connect
                         </button>
                         </a>

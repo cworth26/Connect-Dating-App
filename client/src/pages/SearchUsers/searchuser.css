@@ -371,3 +371,7 @@ body{margin-top:20px;
     .widget .widget-content {
         margin-top: 10px;
     }
+
+    @media screen and (min-width: 320px) and (max-width: 680px) {
+
+    }
