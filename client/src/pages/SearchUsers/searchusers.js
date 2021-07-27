@@ -45,7 +45,7 @@ const SearchUsers = () => {
       <Row className="d-flex justify-content-center" id="search-user-nav">
         <SearchUserNav/>
       </Row>
-      <Row>
+      <Row className="d-flex justify-content-start">
         {matches &&
           matches.map((user) => (
             <Matchcard
