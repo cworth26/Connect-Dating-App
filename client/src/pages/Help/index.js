@@ -36,16 +36,17 @@ const Help = () => {
   }
   return (
     <div
-      className="container border"
+      className="container border" id="background"
       style={{
-        marginTop: "50px",
+        marginTop: "2rem",
         width: "50%",
         backgroundImage: `url('https://cdn.pixabay.com/photo/2016/08/23/10/45/network-1614045_960_720.png')`,
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
     >
-      <h1 style={{ marginTop: "25px" }}>Connect with us</h1>
+      <div id="content">
+      <h1 style={{ marginTop: "25px" }}>Connect With Us</h1>
       <form
         className="row"
         style={{ margin: "25px 85px 75px 100px" }}
@@ -85,6 +86,7 @@ const Help = () => {
           style={{ marginTop: "30px" }}
         />
       </form>
+      </div>
     </div>
   );
 };

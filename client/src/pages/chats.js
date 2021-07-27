@@ -146,7 +146,7 @@ const Chats = () => {
     },
 
     mainCol: {
-      height: "32rem",
+      height: "20rem",
       overflow: "auto"
     },
 

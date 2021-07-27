@@ -38,7 +38,7 @@ const BioCard = ({ bio, username, reRender, setReRender }) => {
 
   return (
     <MobileDiv>
-      <Row>
+      <Row >
         <Col></Col>
         <Col xs={8}>
           <h5>Bio</h5>

@@ -57,17 +57,17 @@ const DTSettings = () => {
 
   return (
     <div>
-      <div className="text-center mt-4 px-5" style={{ overflowX: "hidden" }}>
+      <div className="text-center mt-4 px-5" style={{ overflowX: "hidden"}}>
         {/* <h1 style={{ marginTop: "1rem" }}>Edit Profile</h1> */}
         <Row className="py-5 px-3">
-        <Col md={6} className="d-flex justify-content-center align-items-center">
+        <Col md={5} className="d-flex justify-content-center align-items-center" style={{marginLeft: '3rem'}}>
          <ImageCard 
          username={userData.username}
          public_id={userData.public_id}
          setReRender={setReRender}
          />
          </Col>
-          <Col id="text-column" md={6}>
+          <Col id="text-column" md={6} style={{marginTop: '3rem'}}>
             <DTDiv>
               <Row style={{ marginBottom: "1rem" }}>
                 <IntroCard
@@ -103,13 +103,13 @@ const DTSettings = () => {
                 reRender={reRender}
               />
             </Row>
-            <Row>
+            {/* <Row>
               <PartnerPrefCard
               agePref={userData.agePref} 
               genderPref={userData.genderPref}
               setReRender={setReRender}
               reRender={reRender}/>
-            </Row>
+            </Row> */}
           </Col>
         </Row>
       </div>
