@@ -53,14 +53,14 @@ const Swipe = () => {
         <Row
           className="d-flex justify-content-center align-items-center"
         >
-          <span className="mt-5">
+          {/* <span className="mt-5">
             <Button className="mx-5 py-2" variant="danger" size="lg" style={{ width: "8rem" }}>
-              No Swipe
+              No
             </Button>
             <Button className="mx-5 py-2" variant="info" size="lg" style={{ width: "8rem" }}>
-              Yes Swipe
+              Yes
             </Button>
-          </span>
+          </span> */}
         </Row>)}
         </div>
       </Container>
