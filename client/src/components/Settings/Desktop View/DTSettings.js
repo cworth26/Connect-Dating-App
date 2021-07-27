@@ -67,7 +67,7 @@ const DTSettings = () => {
          setReRender={setReRender}
          />
          </Col>
-          <Col id="text-column" md={6}>
+          <Col id="text-column" md={6} style={{marginTop: '3rem'}}>
             <DTDiv>
               <Row style={{ marginBottom: "1rem" }}>
                 <IntroCard
@@ -103,13 +103,13 @@ const DTSettings = () => {
                 reRender={reRender}
               />
             </Row>
-            <Row>
+            {/* <Row>
               <PartnerPrefCard
               agePref={userData.agePref} 
               genderPref={userData.genderPref}
               setReRender={setReRender}
               reRender={reRender}/>
-            </Row>
+            </Row> */}
           </Col>
         </Row>
       </div>
