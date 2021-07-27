@@ -12,7 +12,7 @@ const ImageCard = ({ username, public_id, reRender, setReRender }) => {
   return (
     <Col
       className="img-col d-flex justify-content-center align-items-center"
-      md={5}
+      md={4}
       id="edit-profile-image"
     >
       <DTDiv>
